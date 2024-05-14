@@ -116,7 +116,7 @@ app.get('/', (req, res) => {
     <ul>
       <li><strong>GET /photos</strong> - Retrieve all photos</li>
       <li><strong>GET /photos/:id</strong> - Retrieve a single photo by id</li>
-      <li><strong>GET /photos/search?description={keyword}</strong> - Search photos by description</li>
+      <li><strong>GET /photos/search?query={keyword}</strong> - Search photos by description</li>
       <li><strong>POST /photos</strong> - Add a new photo</li>
       <li><strong>PUT /photos/:id</strong> - Update a photo by id</li>
       <li><strong>PATCH /photos/:id</strong> - Partially update a photo by id</li>
