@@ -2,9 +2,10 @@
   "name": "photosapi",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "",
-    "dev": ""
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Stéphane RAVET",
   "license": "MIT License",
@@ -15,5 +16,8 @@
   },
   "engines": {
     "node": ">=20.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
