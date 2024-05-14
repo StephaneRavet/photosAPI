@@ -1,0 +1,19 @@
+{
+  "name": "photosapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "",
+    "dev": ""
+  },
+  "author": "Stéphane RAVET",
+  "license": "MIT License",
+  "description": "A simple and efficient API for managing and serving photos (in memory, no database). Built with Express and Node.js, PhotosAPI allows you to easily upload, retrieve, and manage photo collections.",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=20.13.1"
+  }
+}
