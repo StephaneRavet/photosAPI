@@ -4,6 +4,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
+import { log } from 'console';
 
 // Configuration de base pour le module ES
 const __filename = fileURLToPath(import.meta.url);
@@ -36,17 +37,6 @@ loadPhotos();
 // GET /photos - Retrieve all photos
 app.get('/photos', (req, res) => {
     res.json(photos);
-});
-
-// GET /photos/:id - Retrieve a single photo by id
-app.get('/photos/:id', (req, res) => {
-    const { id } = req.params;
-    const photo = photos.find(p => p.id === parseInt(id, 10));
-    if (photo) {
-        res.json(photo);
-    } else {
-        res.status(404).json({ message: 'Photo not found' });
-    }
 });
 
 // POST /photos - Add a new photo
@@ -98,7 +88,9 @@ app.delete('/photos/:id', (req, res) => {
 
 // GET /photos/search - Search photos by description
 app.get('/photos/search', (req, res) => {
+    console.log('REQ', req.query);
     const { description } = req.query;
+    console.log('DESC', description);
     if (!description) {
         return res.status(400).json({ message: 'Description query parameter is required' });
     }
@@ -106,6 +98,17 @@ app.get('/photos/search', (req, res) => {
         photo.description.toLowerCase().includes(description.toLowerCase())
     );
     res.json(matchingPhotos);
+});
+
+// GET /photos/:id - Retrieve a single photo by id
+app.get('/photos/:id', (req, res) => {
+    const { id } = req.params;
+    const photo = photos.find(p => p.id === parseInt(id, 10));
+    if (photo) {
+        res.json(photo);
+    } else {
+        res.status(404).json({ message: 'Photo not found' });
+    }
 });
 
 // Description of available routes
@@ -116,7 +119,7 @@ app.get('/', (req, res) => {
     <ul>
       <li><strong>GET /photos</strong> - Retrieve all photos</li>
       <li><strong>GET /photos/:id</strong> - Retrieve a single photo by id</li>
-      <li><strong>GET /photos/search?query={keyword}</strong> - Search photos by description</li>
+      <li><strong>GET /photos/search?description={keyword}</strong> - Search photos by description</li>
       <li><strong>POST /photos</strong> - Add a new photo</li>
       <li><strong>PUT /photos/:id</strong> - Update a photo by id</li>
       <li><strong>PATCH /photos/:id</strong> - Partially update a photo by id</li>
