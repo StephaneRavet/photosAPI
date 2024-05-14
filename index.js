@@ -4,7 +4,6 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
-import { log } from 'console';
 
 // Configuration de base pour le module ES
 const __filename = fileURLToPath(import.meta.url);
@@ -88,9 +87,7 @@ app.delete('/photos/:id', (req, res) => {
 
 // GET /photos/search - Search photos by description
 app.get('/photos/search', (req, res) => {
-    console.log('REQ', req.query);
     const { description } = req.query;
-    console.log('DESC', description);
     if (!description) {
         return res.status(400).json({ message: 'Description query parameter is required' });
     }
