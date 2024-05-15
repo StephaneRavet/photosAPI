@@ -73,8 +73,8 @@ app.patch('/photos/:id', (req, res) => {
     }
     const photo = photos.find(p => p.id === parseInt(id, 10));
     if (photo) {
-        if (description) photo.description = description;
-        if (url) photo.url = url;
+        photo.description = description.trim() ?? photo.description
+        photo.url = url.trim() ?? photo.url
         res.json(photo);
     } else {
         res.status(404).json({ message: 'Photo not found' });
@@ -99,7 +99,7 @@ app.get('/photos/search', (req, res) => {
     if (!description) {
         return res.status(400).json({ message: 'Description query parameter is required' });
     }
-    const matchingPhotos = photos.filter(photo => 
+    const matchingPhotos = photos.filter(photo =>
         photo.description?.toLowerCase().includes(description.toLowerCase())
     );
     res.json(matchingPhotos);
