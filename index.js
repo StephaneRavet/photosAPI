@@ -15,6 +15,7 @@ const port = process.env.PORT ?? 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/example', express.static(path.join(__dirname, 'example')));
 
 let photos = [];
 let nextId = 1;

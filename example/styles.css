@@ -1,0 +1,68 @@
+.photo-card {
+    position: relative;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+}
+
+.photo-card:hover {
+    transform: scale(1.05);
+}
+
+.photo-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.deleteButton {
+    display: none;
+}
+
+.photo-card:hover .deleteButton {
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+}
+
+.photo-card:hover .photo-details button {
+    display: block;
+    color: white;
+}
+
+.modal.is-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure all cards are of equal height */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.media-content {
+    flex-grow: 1;
+}
+
+/* Ensure all columns have the same height */
+.columns.is-multiline {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.columns.is-multiline .column {
+    display: flex;
+    flex-direction: column;
+}
+
+textarea.no-border {
+    border: none;
+    resize: none;
+    box-shadow: none;
+}

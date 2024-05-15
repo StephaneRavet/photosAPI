@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <section class="section">
+            <div class="container">
+                <h1 class="title">Photo Collection</h1>
+                <p class="control has-icons-left has-icons-right">
+                    <span class="icon is-left">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input class="input" placeholder="Search photos by description" aria-label="Search photos"
+                        oninput="searchPhotos(this)">
+                </p>
+                <div class="columns is-multiline mt-2" id="photoGrid">
+                    <div class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop" id="addPhoto">
+                        <div class="card photo-card">
+                            <div class="card-content">
+                                <form onsubmit="newPhoto(event)">
+                                    <h2 class="title is-4">Add Photo</h2>
+                                    <div id="addPhotoError" class="has-text-centered has-text-danger"></div>
+                                    <div class="field">
+                                        <input class="input" name="inputUrl" id="inputUrl"
+                                            placeholder="Type URL of a new photo">
+                                    </div>
+                                    <div class="field">
+                                        <input class="input" name="inputDescription" id="inputDescription"
+                                            placeholder="Type description for the photo">
+                                    </div>
+                                    <div class="field">
+                                        <button class="button is-primary is-fullwidth">
+                                            <span class="icon">
+                                                <i class="fa-solid fa-camera"></i>
+                                            </span>
+                                            <span>Add Photo</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Photos will be displayed here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
