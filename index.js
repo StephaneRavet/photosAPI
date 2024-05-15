@@ -43,6 +43,9 @@ app.get('/photos', (req, res) => {
 // POST /photos - Add a new photo
 app.post('/photos', (req, res) => {
     const { description, url } = req.body;
+    if (!description || !url) {
+        return res.status(400).json({ message: 'Description and URL are required' });
+    }
     const newPhoto = { id: nextId++, description, url };
     photos.unshift(newPhoto);
     res.status(201).json(newPhoto);
@@ -65,6 +68,9 @@ app.put('/photos/:id', (req, res) => {
 app.patch('/photos/:id', (req, res) => {
     const { id } = req.params;
     const { description, url } = req.body;
+    if (!description && !url) {
+        return res.status(400).json({ message: 'At least one field is required' });
+    }
     const photo = photos.find(p => p.id === parseInt(id, 10));
     if (photo) {
         if (description) photo.description = description;
@@ -94,7 +100,7 @@ app.get('/photos/search', (req, res) => {
         return res.status(400).json({ message: 'Description query parameter is required' });
     }
     const matchingPhotos = photos.filter(photo => 
-        photo.description.toLowerCase().includes(description.toLowerCase())
+        photo.description?.toLowerCase().includes(description.toLowerCase())
     );
     res.json(matchingPhotos);
 });
