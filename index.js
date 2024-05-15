@@ -42,7 +42,7 @@ app.get('/photos', (req, res) => {
 app.post('/photos', (req, res) => {
     const { description, url } = req.body;
     const newPhoto = { id: nextId++, description, url };
-    photos.push(newPhoto);
+    photos.unshift(newPhoto);
     res.status(201).json(newPhoto);
 });
 
