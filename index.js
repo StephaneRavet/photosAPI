@@ -73,8 +73,8 @@ app.patch('/photos/:id', (req, res) => {
     }
     const photo = photos.find(p => p.id === parseInt(id, 10));
     if (photo) {
-        photo.description = description.trim() ?? photo.description
-        photo.url = url.trim() ?? photo.url
+        photo.description = description?.trim() ?? photo.description
+        photo.url = url?.trim() ?? photo.url
         res.json(photo);
     } else {
         res.status(404).json({ message: 'Photo not found' });
